@@ -37,6 +37,7 @@ namespace Tuerschild
 
             // LehrerInnen-Liste laden
             UnityWebRequest req = UnityWebRequest.Get(listUrl);
+            req.certificateHandler = new BypassCertificate();
             await req.SendWebRequest();
 
             if (req.result != UnityWebRequest.Result.Success)
@@ -81,6 +82,7 @@ namespace Tuerschild
 
                 // Detailseite laden
                 UnityWebRequest detailReq = UnityWebRequest.Get(baseUrl + link);
+                detailReq.certificateHandler = new BypassCertificate();
                 await detailReq.SendWebRequest();
 
                 if (detailReq.result != UnityWebRequest.Result.Success)
@@ -108,6 +110,11 @@ namespace Tuerschild
 
 
             return result;
+        }
+
+        private class BypassCertificate : CertificateHandler
+        {
+            protected override bool ValidateCertificate(byte[] certificateData) => true;
         }
     }
 }
