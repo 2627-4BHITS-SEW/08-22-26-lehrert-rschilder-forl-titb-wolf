@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Tuerschild
@@ -20,7 +22,7 @@ namespace Tuerschild
         {
             targetRoom = gameObject.name.Replace("Sign-", "");
             TMP_Text textComponent = GetComponent<TMP_Text>();
-            
+
 
             textComponent.text = await FetchTeachers();
         }
@@ -29,51 +31,82 @@ namespace Tuerschild
 
         private async Task<string> FetchTeachers()
         {
-            HttpClient client = new HttpClient();
-            string html = await client.GetStringAsync(listUrl);
+            string baseUrl = "https://www.htl-salzburg.ac.at";
+            string listUrl = baseUrl + "/lehrerinnen.html";
+            string result = "";
 
-            // Regex für Lehrer + Raum
+            // LehrerInnen-Liste laden
+            UnityWebRequest req = UnityWebRequest.Get(listUrl);
+            await req.SendWebRequest();
+
+            if (req.result != UnityWebRequest.Result.Success)
+            {
+                result = "Fehler beim Laden der Lehrerliste!";
+                return result;
+            }
+
+            string html = req.downloadHandler.text;
+
+            // Name + Link extrahieren
             Regex teacherRegex = new Regex(
-                "<a href=\"(?<link>/lehrer/[^\"]*?room=(?<room>[A-Z0-9]+))\">(?<name>[^<]+)</a>"
+                "<a[^>]*href=\"(?<link>/lehrerinnen-details/[^\"]+)\"[^>]*>\\s*<span[^>]*>(?<name>[^<]+)</span>",
+                RegexOptions.IgnoreCase
             );
 
             var matches = teacherRegex.Matches(html);
 
-            // Türschild beginnt mit dem Raum
-            string result = $"{targetRoom}\n\n";
+            result = $"Lehrer im Raum {targetRoom}:\n\n";
 
             foreach (Match m in matches)
             {
-                string room = m.Groups["room"].Value;
+                string link = m.Groups["link"].Value;
+                string name = m.Groups["name"].Value;
+
+                // Raum aus Link extrahieren: -c-205.html → C205
+                Match roomMatch = Regex.Match(
+                    link,
+                    "-(?<letter>[a-h])-(?<number>[0-9]+)\\.html",
+                    RegexOptions.IgnoreCase
+                );
+
+                if (!roomMatch.Success)
+                    continue;
+
+                string letter = roomMatch.Groups["letter"].Value.ToUpper();
+                string number = roomMatch.Groups["number"].Value;
+                string room = letter + number;
 
                 if (room != targetRoom)
                     continue;
 
-                string link = m.Groups["link"].Value;
-
                 // Detailseite laden
-                string teacherHtml = await client.GetStringAsync(baseUrl + link);
+                UnityWebRequest detailReq = UnityWebRequest.Get(baseUrl + link);
+                await detailReq.SendWebRequest();
 
-                // Name
-                string fullName = Regex.Match(teacherHtml, "<h1>(?<name>[^<]+)</h1>").Groups["name"].Value;
+                if (detailReq.result != UnityWebRequest.Result.Success)
+                    continue;
 
-                // E-Mail
-                string mail = Regex.Match(teacherHtml, "mailto:(?<mail>[^\"]+)").Groups["mail"].Value;
+                string teacherHtml = detailReq.downloadHandler.text;
 
-                // Sprechstunde
-                Match sprechstundeMatch = Regex.Match(teacherHtml, "Sprechstunde:?\\s*([^<]+)");
-                string sprechstunde = sprechstundeMatch.Success ? sprechstundeMatch.Groups[1].Value.Trim() : "Keine Sprechstunde";
+                // Sprechstunde extrahieren
+                Match sprechstundeMatch = Regex.Match(
+                    teacherHtml,
+                    "Sprechstunde:</div>\\s*<div class=\"value\">\\s*<span class=\"text\">(?<sprechstunde>[^<]+)</span>",
+                    RegexOptions.IgnoreCase
+                );
 
-                // Telefon (HTL-Seite hat oft: Tel.: 0664 1234567)
-                Match telMatch = Regex.Match(teacherHtml, "Tel\\.?[: ]+([0-9 +/]+)");
-                string tel = telMatch.Success ? telMatch.Groups[1].Value.Trim() : "Keine Telefonnummer";
+                string sprechstunde = sprechstundeMatch.Success
+                    ? sprechstundeMatch.Groups["sprechstunde"].Value.Trim()
+                    : "Keine Sprechstunde";
 
-                // Format wie gefordert:
-                result += $"{fullName}\n";
-                result += $"{sprechstunde}\n";
-                result += $"{mail}\n";
-                result += $"{tel}\n\n";
+                // Ausgabe
+                result += $"{name}\n";
+                result += $"Raum: {room}\n";
+                result += $"Sprechstunde: {sprechstunde}\n";
+                result += $"-------------------------\n";
             }
+
+
             return result;
         }
     }
