@@ -83,8 +83,3 @@ Die HTML‑Struktur der Website ist verändert oder unvollständig.
 **Erwartetes Ergebnis:**  
 Das System zeigt eine Fehlermeldung oder überspringt fehlerhafte Einträge, ohne abzustürzen.  
 **Requirement:** NFR‑03, FR‑02, FR‑05
-
-
-- **in perfektem Markdown formatieren**,  
-- **als GitHub‑README‑Style optimieren**,  
-- oder **für jeden Test ein Testdiagramm** erstellen.
