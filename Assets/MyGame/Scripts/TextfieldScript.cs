@@ -1,0 +1,118 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+
+namespace Tuerschild
+{
+    public class Textfield : MonoBehaviour
+    {
+        const string baseUrl = "http://www.htl-salzburg.ac.at";
+        string listUrl = baseUrl + "/lehrerinnen.html";
+        private string targetRoom;
+
+        private async void Start()
+        {
+            targetRoom = gameObject.name.Replace("Sign-", "");
+            TMP_Text textComponent = GetComponent<TMP_Text>();
+
+            textComponent.text = await FetchTeachers();
+
+            if (textComponent.text == null || textComponent.text == "")
+            {
+                textComponent.text = "Keine LehrerInnen gefunden!";
+            }
+        }
+
+
+
+        private async Task<string> FetchTeachers()
+        {
+            string result = "";
+
+            // LehrerInnen-Liste laden
+            UnityWebRequest req = UnityWebRequest.Get(listUrl);
+            req.certificateHandler = new BypassCertificate();
+            await req.SendWebRequest();
+
+            if (req.result != UnityWebRequest.Result.Success)
+            {
+                result = "Fehler beim Laden der Lehrerliste!";
+                return result;
+            }
+
+            string html = req.downloadHandler.text;
+
+            Regex teacherRegex = new Regex(
+                "<a[^>]*href=\"(?<link>/lehrerinnen-details/[^\"]+)\"[^>]*>\\s*<span[^>]*>(?<name>[^<]+)</span>",
+                RegexOptions.IgnoreCase
+            );
+
+            var matches = teacherRegex.Matches(html);
+
+            result = $"Lehrer im Raum {targetRoom}:\n\n";
+
+            foreach (Match m in matches)
+            {
+                string link = m.Groups["link"].Value;
+                string name = m.Groups["name"].Value;
+
+                Match roomMatch = Regex.Match(
+                    link,
+                    "-(?<letter>[a-h])-(?<number>[0-9]+)\\.html",
+                    RegexOptions.IgnoreCase
+                );
+
+                if (!roomMatch.Success)
+                    continue;
+
+                string letter = roomMatch.Groups["letter"].Value.ToUpper();
+                string number = roomMatch.Groups["number"].Value;
+                string room = letter + number;
+
+                if (room != targetRoom)
+                    continue;
+
+                UnityWebRequest detailReq = UnityWebRequest.Get(baseUrl + link);
+                detailReq.certificateHandler = new BypassCertificate();
+                await detailReq.SendWebRequest();
+
+                if (detailReq.result != UnityWebRequest.Result.Success)
+                    continue;
+
+                string teacherHtml = detailReq.downloadHandler.text;
+
+                Match sprechstundeMatch = Regex.Match(
+                    teacherHtml,
+                    "Sprechstunde:</div>\\s*<div class=\"value\">\\s*<span class=\"text\">(?<sprechstunde>[^<]+)</span>",
+                    RegexOptions.IgnoreCase
+                );
+
+                string sprechstunde = sprechstundeMatch.Success
+                    ? sprechstundeMatch.Groups["sprechstunde"].Value.Trim()
+                    : "Keine Sprechstunde";
+
+                result += $"{name}\n";
+                result += $"Raum: {room}\n";
+                result += $"Sprechstunde: {sprechstunde}\n";
+                result += $"-------------------------\n";
+            }
+
+            return result;
+        }
+
+        private class BypassCertificate : CertificateHandler
+        {
+            protected override bool ValidateCertificate(byte[] certificateData)
+            {
+                return true;
+            }
+        }
+    }
+}
