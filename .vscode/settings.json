@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "08-22-26-lehrert-rschilder-forl-titb-wolf.slnx"
+    "dotnet.defaultSolution": "08-22-26-lehrertürschilder-forl-titb-wolf.slnx"
 }

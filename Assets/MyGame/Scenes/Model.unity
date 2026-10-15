@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 99911030}
   - component: {fileID: 99911032}
   - component: {fileID: 99911031}
+  - component: {fileID: 99911033}
   m_Layer: 0
   m_Name: B305
   m_TagString: Untagged
@@ -206,8 +207,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -300,6 +301,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &99911033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99911029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &130463999
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +478,7 @@ Transform:
   m_GameObject: {fileID: 165692470}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.86, y: -2.37, z: -0}
+  m_LocalPosition: {x: 10.144, y: -2.37, z: -0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -562,6 +575,7 @@ GameObject:
   - component: {fileID: 230456474}
   - component: {fileID: 230456476}
   - component: {fileID: 230456475}
+  - component: {fileID: 230456477}
   m_Layer: 0
   m_Name: B303
   m_TagString: Untagged
@@ -638,8 +652,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -732,6 +746,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &230456477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230456473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &271895365
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +883,7 @@ GameObject:
   - component: {fileID: 393790490}
   - component: {fileID: 393790492}
   - component: {fileID: 393790491}
+  - component: {fileID: 393790493}
   m_Layer: 0
   m_Name: B312
   m_TagString: Untagged
@@ -933,8 +960,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -1027,6 +1054,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &393790493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393790489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &435960922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1077,7 @@ GameObject:
   - component: {fileID: 435960923}
   - component: {fileID: 435960925}
   - component: {fileID: 435960924}
+  - component: {fileID: 435960926}
   m_Layer: 0
   m_Name: B311
   m_TagString: Untagged
@@ -1114,8 +1154,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -1208,6 +1248,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &435960926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435960922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &450973109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +1771,7 @@ GameObject:
   - component: {fileID: 718210716}
   - component: {fileID: 718210718}
   - component: {fileID: 718210717}
+  - component: {fileID: 718210719}
   m_Layer: 0
   m_Name: B314
   m_TagString: Untagged
@@ -1795,8 +1848,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -1889,6 +1942,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &718210719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718210715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &725097194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1965,7 @@ GameObject:
   - component: {fileID: 725097195}
   - component: {fileID: 725097197}
   - component: {fileID: 725097196}
+  - component: {fileID: 725097198}
   m_Layer: 0
   m_Name: B310
   m_TagString: Untagged
@@ -1976,8 +2042,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -2070,6 +2136,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &725097198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725097194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &739201288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2740,7 @@ GameObject:
   - component: {fileID: 1691619845}
   - component: {fileID: 1691619847}
   - component: {fileID: 1691619846}
+  - component: {fileID: 1691619848}
   m_Layer: 0
   m_Name: B313
   m_TagString: Untagged
@@ -2738,8 +2817,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -2832,6 +2911,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1691619848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691619844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &1701775790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2934,7 @@ GameObject:
   - component: {fileID: 1701775791}
   - component: {fileID: 1701775793}
   - component: {fileID: 1701775792}
+  - component: {fileID: 1701775794}
   m_Layer: 0
   m_Name: C312
   m_TagString: Untagged
@@ -2919,8 +3011,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -3013,6 +3105,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1701775794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701775790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &1872806151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,6 +3591,7 @@ GameObject:
   - component: {fileID: 2116444621}
   - component: {fileID: 2116444623}
   - component: {fileID: 2116444622}
+  - component: {fileID: 2116444624}
   m_Layer: 0
   m_Name: C313
   m_TagString: Untagged
@@ -3563,8 +3668,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -3657,6 +3762,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2116444624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116444620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1 &2133295421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3785,7 @@ GameObject:
   - component: {fileID: 2133295422}
   - component: {fileID: 2133295424}
   - component: {fileID: 2133295423}
+  - component: {fileID: 2133295425}
   m_Layer: 0
   m_Name: B304
   m_TagString: Untagged
@@ -3744,8 +3862,8 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -3838,6 +3956,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2133295425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133295421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98d082c741f9f21fa6013c6a4bea8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tuerschild.Textfield
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
