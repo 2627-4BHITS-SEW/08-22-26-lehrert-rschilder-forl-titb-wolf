@@ -1,0 +1,92 @@
+## **Functional Requirements (FR)**
+
+**FR‑01**  
+Das System muss die LehrerInnen‑Liste von der HTL‑Salzburg‑Website per HTTP‑Request laden.
+
+**FR‑02**  
+Das System muss alle LehrerInnen anhand eines Regex‑Musters aus dem HTML extrahieren.
+
+**FR‑03**  
+Das System muss den Raum jeder Lehrperson aus dem Dateinamen der Detailseite erkennen.
+
+**FR‑04**  
+Das System muss alle LehrerInnen nach einem angegebenen Zielraum filtern (z. B. C205).
+
+**FR‑05**  
+Das System muss Name, Raum und Sprechstunde der gefilterten Lehrpersonen anzeigen.
+
+
+## **Non‑Functional Requirements (NFR)**
+
+**NFR‑01**  
+Das System muss innerhalb von 3 Sekunden auf Netzwerkfehler reagieren und eine Fehlermeldung anzeigen.
+
+**NFR‑02**  
+Die angezeigten Informationen müssen gut lesbar und klar strukturiert sein.
+
+**NFR‑03**  
+Das System darf bei ungültigen oder fehlenden HTML‑Daten nicht abstürzen.
+
+
+## **Akzeptanzkriterien**
+
+### **FR‑01 – Laden der LehrerInnen‑Liste**
+**Akzeptanzkriterium:**  
+Wenn die Website erreichbar ist, muss der HTTP‑Request den vollständigen HTML‑Code der LehrerInnen‑Liste zurückgeben.
+
+### **FR‑04 – Filtern nach Zielraum**
+**Akzeptanzkriterium:**  
+Nur Lehrpersonen, deren Raum exakt dem eingegebenen Zielraum entspricht, dürfen in der Ausgabe erscheinen.
+
+### **FR‑05 – Anzeigen der Informationen**
+**Akzeptanzkriterium:**  
+Für jede gefilterte Lehrperson müssen Name, Raum und Sprechstunde vollständig angezeigt werden.
+
+
+## **Testfälle**
+
+### **TC‑01 – Happy Path Test**
+**Beschreibung:**  
+Das System lädt die LehrerInnen‑Liste, extrahiert alle Einträge, filtert nach Raum C205 und zeigt die passenden LehrerInnen korrekt an.  
+**Erwartetes Ergebnis:**  
+Alle LehrerInnen aus Raum C205 werden mit Name, Raum und Sprechstunde angezeigt.  
+**Requirement:** FR‑01, FR‑02, FR‑03, FR‑04, FR‑05
+
+
+### **TC‑02 – Edge Case: Kein Lehrer im Zielraum**
+**Beschreibung:**  
+Der Zielraum existiert, aber es gibt keine Lehrperson, die diesem Raum zugeordnet ist.  
+**Erwartetes Ergebnis:**  
+Das System zeigt eine leere Liste oder eine Meldung wie „Keine Lehrperson gefunden“.  
+**Requirement:** FR‑04
+
+
+### **TC‑03 – Edge Case: Sprechstunde fehlt**
+**Beschreibung:**  
+Eine Lehrperson hat keine Sprechstunde im HTML‑Code.  
+**Erwartetes Ergebnis:**  
+Das System zeigt „Keine Sprechstunde“ an.  
+**Requirement:** FR‑05
+
+
+### **TC‑04 – Error Case: Netzwerkfehler**
+**Beschreibung:**  
+Die Website ist nicht erreichbar oder der Request schlägt fehl.  
+**Erwartetes Ergebnis:**  
+Das System zeigt „Fehler beim Laden der Lehrerliste!“ und stürzt nicht ab.  
+**Requirement:** NFR‑01, FR‑01
+
+
+### **TC‑05 – Error Case: Ungültiges HTML**
+**Beschreibung:**  
+Die HTML‑Struktur der Website ist verändert oder unvollständig.  
+**Erwartetes Ergebnis:**  
+Das System zeigt eine Fehlermeldung oder überspringt fehlerhafte Einträge, ohne abzustürzen.  
+**Requirement:** NFR‑03, FR‑02, FR‑05
+
+
+- **in perfektem Markdown formatieren**,  
+- **als GitHub‑README‑Style optimieren**,  
+- oder **für jeden Test ein Testdiagramm** erstellen.
+
+Sag einfach Bescheid.
