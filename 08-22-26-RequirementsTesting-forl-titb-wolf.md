@@ -88,5 +88,3 @@ Das System zeigt eine Fehlermeldung oder überspringt fehlerhafte Einträge, ohn
 - **in perfektem Markdown formatieren**,  
 - **als GitHub‑README‑Style optimieren**,  
 - oder **für jeden Test ein Testdiagramm** erstellen.
-
-Sag einfach Bescheid.
