@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class MoveCam : MonoBehaviour
 {
     public GameObject Cam;
-    public float speed = 5f;
+    public float speed = 25f;
     void Start()
     {
         
@@ -12,6 +12,15 @@ public class MoveCam : MonoBehaviour
 
     void Update()
     {
+        if (Keyboard.current.shiftKey.isPressed)
+        {
+            speed = 100f;
+        }
+        else
+        {
+            speed = 25f;
+        }
+
         if (Keyboard.current == null) return;
 
         if (Keyboard.current.wKey.isPressed)
@@ -29,6 +38,14 @@ public class MoveCam : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             Cam.transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+        if (Keyboard.current.eKey.isPressed)
+        {
+            Cam.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+        if (Keyboard.current.qKey.isPressed)
+        {
+            Cam.transform.Translate(Vector3.back * speed * Time.deltaTime);
         }
     }
 }
