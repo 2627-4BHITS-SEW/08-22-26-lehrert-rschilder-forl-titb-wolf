@@ -13,9 +13,8 @@ namespace Tuerschild
 {
     public class Textfield : MonoBehaviour
     {
-
         const string baseUrl = "http://www.htl-salzburg.ac.at";
-        string listUrl = baseUrl + "/lehrerinnen";
+        string listUrl = baseUrl + "/lehrerinnen.html";
         private string targetRoom;
 
         private async void Start()
@@ -23,16 +22,18 @@ namespace Tuerschild
             targetRoom = gameObject.name.Replace("Sign-", "");
             TMP_Text textComponent = GetComponent<TMP_Text>();
 
-
             textComponent.text = await FetchTeachers();
+
+            if (textComponent.text == null || textComponent.text == "")
+            {
+                textComponent.text = "Keine LehrerInnen gefunden!";
+            }
         }
 
 
 
         private async Task<string> FetchTeachers()
         {
-            string baseUrl = "https://www.htl-salzburg.ac.at";
-            string listUrl = baseUrl + "/lehrerinnen.html";
             string result = "";
 
             // LehrerInnen-Liste laden
@@ -48,7 +49,6 @@ namespace Tuerschild
 
             string html = req.downloadHandler.text;
 
-            // Name + Link extrahieren
             Regex teacherRegex = new Regex(
                 "<a[^>]*href=\"(?<link>/lehrerinnen-details/[^\"]+)\"[^>]*>\\s*<span[^>]*>(?<name>[^<]+)</span>",
                 RegexOptions.IgnoreCase
@@ -63,7 +63,6 @@ namespace Tuerschild
                 string link = m.Groups["link"].Value;
                 string name = m.Groups["name"].Value;
 
-                // Raum aus Link extrahieren: -c-205.html → C205
                 Match roomMatch = Regex.Match(
                     link,
                     "-(?<letter>[a-h])-(?<number>[0-9]+)\\.html",
@@ -80,7 +79,6 @@ namespace Tuerschild
                 if (room != targetRoom)
                     continue;
 
-                // Detailseite laden
                 UnityWebRequest detailReq = UnityWebRequest.Get(baseUrl + link);
                 detailReq.certificateHandler = new BypassCertificate();
                 await detailReq.SendWebRequest();
@@ -90,7 +88,6 @@ namespace Tuerschild
 
                 string teacherHtml = detailReq.downloadHandler.text;
 
-                // Sprechstunde extrahieren
                 Match sprechstundeMatch = Regex.Match(
                     teacherHtml,
                     "Sprechstunde:</div>\\s*<div class=\"value\">\\s*<span class=\"text\">(?<sprechstunde>[^<]+)</span>",
@@ -101,20 +98,21 @@ namespace Tuerschild
                     ? sprechstundeMatch.Groups["sprechstunde"].Value.Trim()
                     : "Keine Sprechstunde";
 
-                // Ausgabe
                 result += $"{name}\n";
                 result += $"Raum: {room}\n";
                 result += $"Sprechstunde: {sprechstunde}\n";
                 result += $"-------------------------\n";
             }
 
-
             return result;
         }
 
         private class BypassCertificate : CertificateHandler
         {
-            protected override bool ValidateCertificate(byte[] certificateData) => true;
+            protected override bool ValidateCertificate(byte[] certificateData)
+            {
+                return true;
+            }
         }
     }
 }
